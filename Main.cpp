@@ -9,8 +9,8 @@ vector<map<milliseconds, vector<Point>>> allTracks;
 mutex mutex_frames, mutex_tracks;
 
 const int cameraNumber = 0;
-const string fileName = R"(/home/drew/ClionProjects/detection/123.avi)";
-//const string fileName = R"(/home/drew/ClionProjects/detection/TB.mp4)";
+// const string fileName = R"(/home/drew/ClionProjects/detection/123.avi)";
+const string fileName = R"(./TB.mp4)";
 
 
 int main()

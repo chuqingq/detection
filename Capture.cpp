@@ -151,7 +151,8 @@ void Capture::cut(map<milliseconds, Frame>& framesFlow, mutex& mutex_frames, vec
 
 void Capture::find(map<milliseconds, Frame>& framesFlow, mutex& mutex_frames, vector<map<milliseconds, vector<Point>>>& allTracks, mutex& mutex_tracks)
 {
-	BackgroundSubtractorMOG2 backgroundSubtractor(10, 25, false);
+	// BackgroundSubtractorMOG2 backgroundSubtractor(10, 25, false);
+	Ptr<BackgroundSubtractorMOG2> backgroundSubtractor = createBackgroundSubtractorMOG2(10, 25, false);
 	vector<Vec4i> hierarchy;
 	TermCriteria termcrit(CV_TERMCRIT_ITER | CV_TERMCRIT_EPS, 20, 0.03);
 	Size subPixWinSize(10, 10), winSize(31, 31);
@@ -163,7 +164,8 @@ void Capture::find(map<milliseconds, Frame>& framesFlow, mutex& mutex_frames, ve
 		Mat frame, mask, fgimg;
 		currentTime = duration_cast<milliseconds>(high_resolution_clock::now().time_since_epoch());
 		capture >> frame;
-		backgroundSubtractor(frame, mask, -1);
+		// backgroundSubtractor(frame, mask, -1);
+		backgroundSubtractor->apply(frame, mask, -1);
 		mask.copyTo(savemask);
 		Frame frametoMap(frame, savemask);
 		mutex_frames.lock();

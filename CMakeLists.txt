@@ -11,4 +11,4 @@ add_executable(detection ${SOURCE})
 
 
 find_package(OpenCV REQUIRED )
-target_link_libraries(detection ${OpenCV_LIBS} )
+target_link_libraries(detection ${OpenCV_LIBS} pthread)
