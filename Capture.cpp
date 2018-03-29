@@ -318,6 +318,12 @@ void Capture::display(map<milliseconds, Frame>& framesFlow, mutex& mutex_frames,
 		putText(outFrame, fpsString, Point(20, outFrame.rows - 20),
 				FONT_HERSHEY_COMPLEX_SMALL, 0.8, Scalar(255,0,255), 1, 8);
 		imshow("tracks", outFrame);
+		static bool writeit = true;
+		if (writeit)
+		{
+			imwrite("./1.jpg", outFrame);
+			writeit = false;
+		}
 		waitKey(10);
 	}
 }
